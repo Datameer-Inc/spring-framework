@@ -83,6 +83,10 @@ public class ArrayConstructorTests extends AbstractExpressionTests {
 		evaluateAndCheckError("new char[3]{'a','c','d','e'}", SpelMessage.INITIALIZER_LENGTH_INCORRECT);
 		evaluateAndCheckError("new char[2]{'hello','world'}", SpelMessage.TYPE_CONVERSION_ERROR);
 		evaluateAndCheckError("new String('a','c','d')", SpelMessage.CONSTRUCTOR_INVOCATION_PROBLEM);
+
+		int threshold = 256 * 1024; // ConstructorReference.MAX_ARRAY_ELEMENTS
+		evaluateAndCheckError("new int[T(java.lang.Integer).MAX_VALUE]", SpelMessage.MAX_ARRAY_ELEMENTS_THRESHOLD_EXCEEDED, 0, threshold);
+		evaluateAndCheckError("new int[1024 * 1024][1024 * 1024]", SpelMessage.MAX_ARRAY_ELEMENTS_THRESHOLD_EXCEEDED, 0, threshold);
 	}
 
 	@Test
