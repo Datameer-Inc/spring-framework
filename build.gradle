@@ -145,6 +145,7 @@ configure(allprojects) { project ->
 			exclude group:'org.hamcrest', module:'hamcrest-core'
 		}
 		testCompile("org.hamcrest:hamcrest-all:${hamcrestVersion}")
+		testCompile "org.assertj:assertj-core:3.18.1"
 
 		sniffer("org.codehaus.mojo:animal-sniffer-ant-tasks:${snifferVersion}")
 		javaApiSignature("org.codehaus.mojo.signature:java16:1.1@signature")  // API level from JDK 6 update 18
